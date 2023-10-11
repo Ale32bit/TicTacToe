@@ -1,4 +1,4 @@
-package me.alexdevs.tictactoe
+package me.alexdevs.tictactoe.feature_tictactoe.presentation.game
 
 class GameRound {
     public enum class Player {
