@@ -26,6 +26,31 @@ class GameRound {
     }
 
     public fun hasWon(player: Player): Boolean {
-        return true;
+        // Controllo delle righe
+        for (row in grid) {
+            if (row.all { it == player }) {
+                return true
+            }
+        }
+
+        // Controllo delle colonne
+        for (col in 0 until grid.size) {
+            if (grid.all { it[col] == player }) {
+                return true
+            }
+        }
+
+        // Controllo della diagonale principale
+        if (grid[0][0] == player && grid[1][1] == player && grid[2][2] == player) {
+            return true
+        }
+
+        // Controllo della diagonale secondaria
+        if (grid[0][2] == player && grid[1][1] == player && grid[2][0] == player) {
+            return true
+        }
+
+        return false
     }
+
 }
