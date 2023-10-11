@@ -1,4 +1,4 @@
-package me.alexdevs.tictactoe
+package me.alexdevs.tictactoe.core.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,10 +8,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
 import me.alexdevs.tictactoe.core.presentation.components.Navigation
 import me.alexdevs.tictactoe.core.presentation.components.StandardScaffold
 import me.alexdevs.tictactoe.ui.theme.TicTacToeTheme
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
