@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "me.alexdevs.tictactoe"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "me.alexdevs.tictactoe"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
