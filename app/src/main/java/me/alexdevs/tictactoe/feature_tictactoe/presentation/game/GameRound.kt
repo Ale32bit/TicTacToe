@@ -73,4 +73,6 @@ class GameRound {
         return false
     }
 
+    public fun canPlayCell(x: Int, y: Int): Boolean =
+        grid[y][x] == Player.None
 }
