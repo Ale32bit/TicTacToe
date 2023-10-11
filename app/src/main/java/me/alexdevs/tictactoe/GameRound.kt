@@ -7,7 +7,11 @@ class GameRound {
         Cross,
     }
 
-    public var grid = Array(3) {IntArray(3)}
+    public var grid = arrayOf(
+        arrayOf(Player.None, Player.None, Player.None),
+        arrayOf(Player.None, Player.None, Player.None),
+        arrayOf(Player.None, Player.None, Player.None),
+    )
 
     public var playerTurn: Player = Player.None
         get() = field
