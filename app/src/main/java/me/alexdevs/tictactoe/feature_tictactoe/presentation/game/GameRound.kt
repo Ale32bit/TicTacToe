@@ -17,6 +17,10 @@ class GameRound {
         get() = field
         private set;
 
+    public var winner: Player = Player.None
+        get() = field
+        private set
+
     public fun playTurn(x: Int, y: Int): Boolean {
         if(grid[y][x] != Player.None) {
             throw Exception("Attempt to override already played cell.")
@@ -25,6 +29,7 @@ class GameRound {
         grid[y][x] = playerTurn;
 
         val hasPlayerWon = hasWon(playerTurn);
+        winner = playerTurn;
 
         playerTurn = if(playerTurn == Player.Cross) Player.Circle else Player.Cross
 
