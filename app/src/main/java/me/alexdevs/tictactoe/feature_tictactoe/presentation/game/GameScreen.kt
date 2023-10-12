@@ -56,6 +56,10 @@ fun GameScreen() {
                             onCellClick = {
                                 if (gameRound.canPlayCell(index)) {
                                     val hasWon = gameRound.playTurn(index)
+                                    if(!hasWon && gameRound.isDraw()) {
+                                        // Game is draw, no one won. Game over.
+
+                                    }
                                 }
                             }
                         )
