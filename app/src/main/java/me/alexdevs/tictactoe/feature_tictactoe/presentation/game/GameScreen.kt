@@ -17,12 +17,34 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import me.alexdevs.tictactoe.R
+import me.alexdevs.tictactoe.ui.theme.CircleColor
+import me.alexdevs.tictactoe.ui.theme.CrossColor
 
 @Composable
 fun GameScreen() {
     val gameRound by remember { mutableStateOf(GameRound()) }
+
+    val annotatedTitle = buildAnnotatedString {
+        withStyle(style = SpanStyle(color = CrossColor)) {
+            append("X")
+        }
+        append(" vs ")
+        withStyle(style = SpanStyle(color = CircleColor)) {
+            append("O")
+        }
+    }
+
 
     Column(
         modifier = Modifier
@@ -34,10 +56,14 @@ fun GameScreen() {
             modifier = Modifier
                 .padding(top = 20.dp)
                 .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
+            horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
-
+            Text(
+                text = annotatedTitle,
+                textAlign = TextAlign.Center,
+                fontSize = 100.sp
+            )
         }
 
         LazyColumn(
@@ -45,7 +71,6 @@ fun GameScreen() {
         ) {
             items(3) { rowIndex ->
                 LazyRow(
-                    horizontalArrangement = Arrangement.spacedBy(5.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     state = rememberLazyListState()
                 ) {
@@ -74,7 +99,7 @@ fun GameScreen() {
 fun TicTacToeButton(state: GameRound.Player, onCellClick: () -> Unit) {
     Box(
         modifier = Modifier
-            .size(100.dp)
+            .size(125.dp)
             .background(Color.White)
             .border(5.dp, Color.Blue)
             .clip(MaterialTheme.shapes.medium)
