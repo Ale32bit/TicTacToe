@@ -43,7 +43,7 @@ fun Navigation(
             GameScreen(
                 onNavigateUp = navController::navigateUp,
                 onNavigate = navController::navigate,
-                mode = it.arguments?.getString("userId")
+                mode = it.arguments?.getString("mode")
             )
         }
 
