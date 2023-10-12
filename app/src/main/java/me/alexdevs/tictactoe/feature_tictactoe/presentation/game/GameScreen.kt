@@ -21,17 +21,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun GameScreen(
-    onNavigate: (String) -> Unit = {},
-    onNavigateUp: () -> Unit = {},
-) {
+fun GameScreen() {
     var currentPlayer by remember { mutableStateOf(TicTacToeCellState.X) }
     val buttons = List(9) { index -> remember { mutableStateOf(TicTacToeCellState.EMPTY) } }
 
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .background(Color(0xFF3293a8)),
+            .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly
     ) {

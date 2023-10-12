@@ -18,7 +18,7 @@ fun Navigation(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.GameScreen.route,
+        startDestination = Screen.HomeScreen.route,
         modifier = Modifier.fillMaxSize()
     ) {
         composable(Screen.HomeScreen.route) {
@@ -29,10 +29,7 @@ fun Navigation(
         }
 
         composable(Screen.GameScreen.route) {
-            GameScreen(
-                onNavigateUp = navController::navigateUp,
-                onNavigate = navController::navigate,
-            )
+            GameScreen()
         }
 
         composable(Screen.HistoryScreen.route) {
