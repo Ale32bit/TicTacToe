@@ -1,5 +1,6 @@
 package me.alexdevs.tictactoe.feature_tictactoe.presentation.game
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -36,6 +37,8 @@ fun GameScreen(
     val context = LocalContext.current
     val state = viewModel.state.value
     val winnerName = state.gameRound.winner
+
+    Log.d("GameScreen", mode.toString())
 
     /**
      * NON TOCCARE !!!!!!!!
