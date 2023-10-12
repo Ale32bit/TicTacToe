@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TicTacToe</string>
+    <string name="error_unknown">Errore sconosciuto</string>
+    <string name="show_history">Mostra lo storico</string>
+</resources>

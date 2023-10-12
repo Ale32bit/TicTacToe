@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 fun GameScreen(
     onNavigate: (String) -> Unit = {},
     onNavigateUp: () -> Unit = {},
+    mode: String? = null,
 ) {
     Text(text = "Game Screen")
 }

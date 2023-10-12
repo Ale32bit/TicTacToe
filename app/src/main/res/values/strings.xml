@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TicTacToe</string>
+    <string name="error_unknown">Unknown error</string>
+    <string name="show_history">Show History</string>
 </resources>
