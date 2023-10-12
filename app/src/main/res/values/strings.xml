@@ -4,4 +4,6 @@
     <string name="show_history">Show History</string>
     <string name="two_players">Two Players</string>
     <string name="one_player">One Player</string>
+    <string name="go_back">Back to Main Menu</string>
+    <string name="draw_txt">Draw</string>
 </resources>

@@ -12,7 +12,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import me.alexdevs.tictactoe.feature_tictactoe.presentation.game.GameScreen
 import me.alexdevs.tictactoe.feature_tictactoe.presentation.history.HistoryScreen
-import me.alexdevs.tictactoe.feature_tictactoe.presentation.result.ResultScreen
 
 @Composable
 fun Navigation(
@@ -49,13 +48,6 @@ fun Navigation(
 
         composable(Screen.HistoryScreen.route) {
             HistoryScreen(
-                onNavigateUp = navController::navigateUp,
-                onNavigate = navController::navigate,
-            )
-        }
-
-        composable(Screen.ResultScreen.route) {
-            ResultScreen(
                 onNavigateUp = navController::navigateUp,
                 onNavigate = navController::navigate,
             )

@@ -35,7 +35,8 @@ class GameRound {
         grid[cell] = playerTurn;
 
         val hasPlayerWon = hasWon(playerTurn);
-        winner = playerTurn;
+        if(hasPlayerWon)
+            winner = playerTurn;
 
         playerTurn = if(playerTurn == Player.Cross) Player.Circle else Player.Cross
 
