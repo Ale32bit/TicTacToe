@@ -13,6 +13,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -28,11 +29,12 @@ import me.alexdevs.tictactoe.feature_tictactoe.presentation.game.GameScreenViewM
 
 @Composable
 fun ResultScreen(
-    winnerName: String, // Nome del vincitore
     onNavigateUp: () -> Unit = {},
     onNavigate: (String) -> Unit = {},
     viewModel: ResultScreenViewModel = hiltViewModel()
 ) {
+    val context = LocalContext.current
+
     /**
      * NON TOCCARE !!!!!!!!
      */
@@ -67,7 +69,7 @@ fun ResultScreen(
             color = MaterialTheme.colorScheme.onSurface
         )
 
-        if (winnerName != null) {
+        /* if (winnerName != null) {
             Text(
                 text = winnerName,
                 style = TextStyle(fontSize = 36.sp, fontWeight = FontWeight.Bold),
@@ -79,7 +81,7 @@ fun ResultScreen(
                 style = TextStyle(fontSize = 36.sp, fontWeight = FontWeight.Bold),
                 color = MaterialTheme.colorScheme.primary
             )
-        }
+        } */
 
         // Button(
         //    onClick = onNavigateUp,
