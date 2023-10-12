@@ -22,8 +22,7 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun GameScreen() {
-    var currentPlayer by remember { mutableStateOf(TicTacToeCellState.X) }
-    val buttons = List(9) { index -> remember { mutableStateOf(TicTacToeCellState.EMPTY) } }
+    val gameRound by remember { mutableStateOf(GameRound()) }
 
     Column(
         modifier = Modifier
@@ -53,16 +52,10 @@ fun GameScreen() {
                     items(3) { colIndex ->
                         val index = rowIndex * 3 + colIndex
                         TicTacToeButton(
-                            state = buttons[index].value,
+                            state = gameRound.grid[index],
                             onCellClick = {
-                                if (buttons[index].value == TicTacToeCellState.EMPTY) {
-                                    buttons[index].value = currentPlayer
-
-                                    currentPlayer = if (currentPlayer == TicTacToeCellState.X) {
-                                        TicTacToeCellState.O
-                                    } else {
-                                        TicTacToeCellState.X
-                                    }
+                                if (gameRound.canPlayCell(index)) {
+                                    val hasWon = gameRound.playTurn(index)
                                 }
                             }
                         )
@@ -73,12 +66,8 @@ fun GameScreen() {
     }
 }
 
-enum class TicTacToeCellState {
-    X, O, EMPTY
-}
-
 @Composable
-fun TicTacToeButton(state: TicTacToeCellState, onCellClick: () -> Unit) {
+fun TicTacToeButton(state: GameRound.Player, onCellClick: () -> Unit) {
     Box(
         modifier = Modifier
             .size(100.dp)
@@ -90,8 +79,8 @@ fun TicTacToeButton(state: TicTacToeCellState, onCellClick: () -> Unit) {
     ) {
         Text(
             text = when (state) {
-                TicTacToeCellState.X -> "X"
-                TicTacToeCellState.O -> "O"
+                GameRound.Player.Cross -> "X"
+                GameRound.Player.Circle -> "O"
                 else -> ""
             },
             fontSize = 60.sp
