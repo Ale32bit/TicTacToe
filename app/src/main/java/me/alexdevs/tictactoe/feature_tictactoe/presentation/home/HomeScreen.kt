@@ -15,6 +15,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import me.alexdevs.tictactoe.R
 import me.alexdevs.tictactoe.core.presentation.util.asString
+import me.alexdevs.tictactoe.core.util.Screen
 import me.alexdevs.tictactoe.core.util.UiEvent
 import me.alexdevs.tictactoe.feature_tictactoe.presentation.components.CreateButton
 import me.alexdevs.tictactoe.feature_tictactoe.presentation.components.CreateText
@@ -61,21 +62,27 @@ fun HomeScreen(
         CreateButton(
             customText = stringResource(id = R.string.one_player),
             fontSize = 32.sp,
-            onClick = { viewModel.onEvent(HomeEvent.StartGameSinglePlayer) },
+            onClick = {
+                onNavigate(Screen.GameScreen.route + "?mode=1")
+            },
             yPosition = yOffset,
         )
 
         CreateButton(
             customText = stringResource(id = R.string.two_players),
             fontSize = 32.sp,
-            onClick = { viewModel.onEvent(HomeEvent.StartGameMultiplePlayer) },
+            onClick = {
+                onNavigate(Screen.GameScreen.route + "?mode=2")
+            },
             yPosition = (yOffset * 2) + offsetBetweenButtons,
         )
 
         CreateButton(
             customText = stringResource(id = R.string.show_history),
             fontSize = 32.sp,
-            onClick = { viewModel.onEvent(HomeEvent.ShowHistory) },
+            onClick = {
+                onNavigate(Screen.HistoryScreen.route)
+            },
             yPosition = (yOffset * 3) + (offsetBetweenButtons * 2),
         )
     }

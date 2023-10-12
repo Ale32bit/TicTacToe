@@ -25,18 +25,6 @@ class HomeScreenViewModel @Inject constructor(
 
     fun onEvent(event: HomeEvent) {
         when(event) {
-            is HomeEvent.StartGameSinglePlayer -> {
-                viewModelScope.launch {
-                    _eventFlow.emit(UiEvent.Navigate(Screen.GameScreen.route + "?mode=1"))
-                }
-            }
-
-            is HomeEvent.StartGameMultiplePlayer -> {
-                viewModelScope.launch {
-                    _eventFlow.emit(UiEvent.Navigate(Screen.GameScreen.route + "?mode=2"))
-                }
-            }
-
             is HomeEvent.ShowHistory -> {
                 viewModelScope.launch {
                     _eventFlow.emit(UiEvent.Navigate(Screen.HistoryScreen.route))
