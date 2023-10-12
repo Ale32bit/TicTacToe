@@ -33,7 +33,6 @@ fun GameScreen(
     mode: String? = null,
     viewModel: GameScreenViewModel = hiltViewModel()
 ) {
-    val gameRound by remember { mutableStateOf(GameRound()) }
     val context = LocalContext.current
     val state = viewModel.state.value
     val winnerName = state.gameRound.winner
@@ -91,7 +90,7 @@ fun GameScreen(
                             TicTacToeButton(
                                 state = state.gameRound.grid[index],
                                 onCellClick = {
-                                    viewModel.onEvent(GameEvent.ToggleClick(index))
+                                    viewModel.onEvent(GameEvent.ToggleClick(index, mode))
                                 }
                             )
                         }

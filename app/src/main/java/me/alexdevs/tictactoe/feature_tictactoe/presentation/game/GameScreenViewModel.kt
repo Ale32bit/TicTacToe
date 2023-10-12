@@ -1,5 +1,6 @@
 package me.alexdevs.tictactoe.feature_tictactoe.presentation.game
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -25,16 +26,29 @@ class GameScreenViewModel @Inject constructor(
     fun onEvent(event: GameEvent) {
         when(event) {
             is GameEvent.ToggleClick -> {
-                if (_state.value.gameRound.canPlayCell(event.index)) {
-                    val hasWon = _state.value.gameRound.playTurn(event.index)
+                val cont = playTurn(event.index)
 
-                    if (!hasWon && _state.value.gameRound.isDraw() || hasWon) {
-                        _state.value = _state.value.copy(
-                            isInGame = !_state.value.isInGame
-                        )
-                    }
+                Log.d("GameScreenViewModel", event.mode ?: "Mode is NULL")
+
+                if(cont && event.mode == "1" && _state.value.gameRound.playerTurn == GameRound.Player.Circle) {
+                    val bestMove = _state.value.gameRound.bestMove()
+                    playTurn(bestMove)
                 }
             }
         }
+    }
+
+    private fun playTurn(index: Int): Boolean {
+        if (_state.value.gameRound.canPlayCell(index)) {
+            val hasWon = _state.value.gameRound.playTurn(index)
+
+            if (!hasWon && _state.value.gameRound.isDraw() || hasWon) {
+                _state.value = _state.value.copy(
+                    isInGame = !_state.value.isInGame
+                )
+                return false
+            }
+        }
+        return true
     }
 }
