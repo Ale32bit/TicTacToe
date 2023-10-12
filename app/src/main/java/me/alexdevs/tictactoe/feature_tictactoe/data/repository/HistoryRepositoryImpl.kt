@@ -14,4 +14,8 @@ class HistoryRepositoryImpl(
     override fun getHistories(): Flow<List<History>> {
         return dao.getHistories()
     }
+
+    override fun insertGame(history: History) {
+        dao.addGame(history)
+    }
 }

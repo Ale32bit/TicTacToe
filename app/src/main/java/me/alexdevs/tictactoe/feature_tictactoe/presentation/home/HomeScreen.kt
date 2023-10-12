@@ -16,9 +16,9 @@ import kotlinx.coroutines.flow.collectLatest
 import me.alexdevs.tictactoe.R
 import me.alexdevs.tictactoe.core.presentation.util.asString
 import me.alexdevs.tictactoe.core.util.UiEvent
+import me.alexdevs.tictactoe.feature_tictactoe.presentation.components.CreateButton
+import me.alexdevs.tictactoe.feature_tictactoe.presentation.components.CreateText
 import me.alexdevs.tictactoe.ui.theme.Black
-import me.alexdevs.tictactoe.ui.theme.CreateButton
-import me.alexdevs.tictactoe.ui.theme.CreateText
 
 @Composable
 fun HomeScreen(
@@ -28,7 +28,8 @@ fun HomeScreen(
 ) {
     val context = LocalContext.current
 
-    CreateText("Tic\nTac\nToe", Black, 120.sp);
+    CreateText("Tic\nTac\nToe", Black, 120.sp)
+
     /**
      * !!! NON TOCCARE !!! ==> Gestisce gli eventi del viewModel come redirection o mostrare un popup
      */

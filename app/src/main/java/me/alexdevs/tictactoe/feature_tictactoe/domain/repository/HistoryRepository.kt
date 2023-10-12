@@ -7,5 +7,5 @@ interface HistoryRepository {
 
     fun getHistories(): Flow<List<History>>
 
-
+    fun insertGame(history: History)
 }

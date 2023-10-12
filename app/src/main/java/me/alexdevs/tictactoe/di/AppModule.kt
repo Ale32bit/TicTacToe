@@ -9,6 +9,7 @@ import dagger.hilt.components.SingletonComponent
 import me.alexdevs.tictactoe.feature_tictactoe.data.data_source.HistoryDatabase
 import me.alexdevs.tictactoe.feature_tictactoe.data.repository.HistoryRepositoryImpl
 import me.alexdevs.tictactoe.feature_tictactoe.domain.repository.HistoryRepository
+import me.alexdevs.tictactoe.feature_tictactoe.domain.use_case.AddGame
 import me.alexdevs.tictactoe.feature_tictactoe.domain.use_case.GetHistories
 import me.alexdevs.tictactoe.feature_tictactoe.domain.use_case.HistoryUseCases
 import javax.inject.Singleton
@@ -39,7 +40,8 @@ object AppModule {
     @Singleton
     fun provideHistoryUseCases(repository: HistoryRepository): HistoryUseCases {
         return HistoryUseCases(
-            getHistories = GetHistories(repository)
+            getHistories = GetHistories(repository),
+            insertGame = AddGame(repository)
         )
     }
 }

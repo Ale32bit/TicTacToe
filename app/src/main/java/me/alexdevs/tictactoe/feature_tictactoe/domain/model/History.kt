@@ -5,9 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class History(
-    var timestamp: Long,
+    var date: String,
     var winner: String,
-    var points: String,
     @PrimaryKey
     val id: Int? = null,
 )
