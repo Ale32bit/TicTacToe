@@ -1,5 +1,6 @@
 package me.alexdevs.tictactoe.feature_tictactoe.presentation.game
 
 data class GameState(
-    val isLoading: Boolean = false,
+    val isInGame: Boolean = true,
+    var gameRound: GameRound = GameRound(),
 )
