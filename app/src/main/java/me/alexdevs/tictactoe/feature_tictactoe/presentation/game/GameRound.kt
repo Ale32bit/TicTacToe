@@ -93,4 +93,57 @@ class GameRound {
         grid[cell] == Player.None
     public fun canPlayCell(x: Int, y: Int): Boolean =
         grid[x + y * 3] == Player.None
+
+    public fun minimax(depth: Int, isMaximizing: Boolean): Int {
+        if (hasWon(Player.Cross)) {
+            return -1
+        }
+        if (hasWon(Player.Circle)) {
+            return 1
+        }
+        if (isDraw()) {
+            return 0
+        }
+
+        if (isMaximizing) {
+            var bestScore = Int.MIN_VALUE
+            for (i in grid.indices) {
+                if (grid[i] == Player.None) {
+                    grid[i] = Player.Circle
+                    val score = minimax(depth + 1, false)
+                    grid[i] = Player.None
+                    bestScore = maxOf(score, bestScore)
+                }
+            }
+            return bestScore
+        } else {
+            var bestScore = Int.MAX_VALUE
+            for (i in grid.indices) {
+                if (grid[i] == Player.None) {
+                    grid[i] = Player.Cross
+                    val score = minimax(depth + 1, true)
+                    grid[i] = Player.None
+                    bestScore = minOf(score, bestScore)
+                }
+            }
+            return bestScore
+        }
+    }
+
+    public fun bestMove(): Int {
+        var bestScore = Int.MIN_VALUE
+        var move = -1
+        for (i in grid.indices) {
+            if (grid[i] == Player.None) {
+                grid[i] = Player.Circle
+                val score = minimax(0, false)
+                grid[i] = Player.None
+                if (score > bestScore) {
+                    bestScore = score
+                    move = i
+                }
+            }
+        }
+        return move
+    }
 }
