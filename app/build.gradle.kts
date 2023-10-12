@@ -90,4 +90,11 @@ dependencies {
     kaptTest("com.google.dagger:hilt-compiler:2.47")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0-alpha01")
     implementation("androidx.compose.material3:material3:1.1.1")
+
+    // Room
+    implementation("androidx.room:room-runtime:2.5.2")
+    implementation("androidx.room:room-ktx:2.5.2")
+    implementation("androidx.databinding:databinding-runtime:8.1.0")
+    implementation("androidx.datastore:datastore-preferences-core:1.0.0")
+    kapt("androidx.room:room-compiler:2.5.2")
 }
