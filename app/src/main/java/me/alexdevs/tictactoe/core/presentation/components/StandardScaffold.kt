@@ -1,23 +1,32 @@
 package me.alexdevs.tictactoe.core.presentation.components
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun StandardScaffold(
-    navController: NavController,
     modifier: Modifier = Modifier,
-    content: @Composable () -> Unit
+    content: @Composable (Modifier) -> Unit,
+    bottomBar: @Composable () -> Unit
 ) {
     Scaffold(
-        bottomBar = {},
-        floatingActionButton = {},
         modifier = modifier,
-    ) {
-        content()
-    }
+        topBar = {
+            // Add top bar if needed
+        },
+        bottomBar = bottomBar,
+        content = {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+            ) {
+                content(Modifier.weight(1f))
+            }
+        }
+    )
 }
