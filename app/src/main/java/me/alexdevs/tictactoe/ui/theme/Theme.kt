@@ -3,12 +3,21 @@ package me.alexdevs.tictactoe.ui.theme
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -38,6 +47,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
+import kotlin.random.Random
 
 private val DarkColorScheme = darkColorScheme(
     primary = DarkBlue,
@@ -49,16 +59,6 @@ private val LightColorScheme = lightColorScheme(
     primary = DarkBlue,
     secondary = LightBlue,
     tertiary = White,
-
-    /*Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
 )
 
 @Composable
@@ -206,5 +206,53 @@ fun CreateButton(
                 )
             )
         )
+    }
+}
+
+@Composable
+fun RowScope.TableCell(
+    text: String,
+    weight: Float
+) {
+    Text(
+        text = text,
+        Modifier
+            .border(1.dp, Color.Black)
+            .weight(weight)
+            .padding(8.dp)
+    )
+}
+
+@Composable
+fun TableScreen(padding: PaddingValues? = null) {
+    val currentPadding = padding ?: PaddingValues(0.dp, 0.dp);
+
+    // Just a fake data... a Pair of Int and String
+    val tableData = (1..3).mapIndexed { index, item ->
+        index to "Item $index"
+    }
+    // Each cell of a column must have the same weight.
+    val column1Weight = .25f // 25%
+    val column2Weight = .25f // 25%
+    val column3Weight = .50f; // 50%
+    // The LazyColumn will be our table. Notice the use of the weights below
+    LazyColumn(Modifier.fillMaxSize()
+        .padding(currentPadding)) {
+        // Here is the header
+        item {
+            Row(Modifier.background(Color.Gray)) {
+                TableCell(text = "2023/10/10", weight = column1Weight)
+            }
+        }
+        // Here are all the lines of your table.
+        items(tableData) {
+            val (id, text) = it
+            Row(Modifier.fillMaxWidth()
+                .background(White)) {
+                TableCell(text = id.toString(), weight = column1Weight)
+                TableCell(text = text, weight = column2Weight)
+                TableCell(text = Random.nextInt().toString(), weight = column3Weight)
+            }
+        }
     }
 }
