@@ -34,8 +34,8 @@ fun Navigation(
             arguments = listOf(
                 navArgument(name = "mode") {
                     type = NavType.StringType
-                    nullable = true
-                    defaultValue = null
+                    nullable = false
+                    defaultValue = "1"
                 }
             )
         ) {
