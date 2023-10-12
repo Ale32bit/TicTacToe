@@ -2,4 +2,6 @@
     <string name="app_name">TicTacToe</string>
     <string name="error_unknown">Unknown error</string>
     <string name="show_history">Show History</string>
+    <string name="two_players">Two Players</string>
+    <string name="one_player">One Player</string>
 </resources>
