@@ -39,14 +39,10 @@ fun HistoryScreen(
 
         val currentPadding = PaddingValues(30.dp, 275.dp, 30.dp, 30.dp)
 
-        // Just a fake data... a Pair of Int and String
-        val tableData = (1..3).mapIndexed { index, item ->
-            index to "Item $index"
-        }
         // Each cell of a column must have the same weight.
-        val column1Weight = .5f // 25%
-        val column2Weight = .10f // 25%
-        val column3Weight = .85f; // 50%
+        val column1Weight = .15f // 25%
+        val column2Weight = .5f // 25%
+        val column3Weight = .80f; // 50%
         // The LazyColumn will be our table. Notice the use of the weights below
         LazyColumn(
             Modifier.fillMaxSize()
