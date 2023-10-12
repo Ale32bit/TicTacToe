@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import me.alexdevs.tictactoe.feature_tictactoe.presentation.game.GameRound
+import me.alexdevs.tictactoe.ui.theme.DarkBlue
 
 @Composable
 fun TicTacToeButton(state: GameRound.Player, onCellClick: () -> Unit) {
@@ -36,4 +37,26 @@ fun TicTacToeButton(state: GameRound.Player, onCellClick: () -> Unit) {
             fontSize = 60.sp
         )
     }
+}
+@Composable
+fun TicTacToeButtonV2(state: GameRound.Player, onCellClick: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .size(125.dp)
+            .background(Color.White)
+            .border(5.dp, DarkBlue)
+            .clip(MaterialTheme.shapes.medium)
+            .clickable { onCellClick() },
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = when (state) {
+                GameRound.Player.Cross -> "X"
+                GameRound.Player.Circle -> "O"
+                else -> ""
+            },
+            fontSize = 75.sp
+        )
+    }
+
 }
