@@ -31,6 +31,7 @@ class GameScreenViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun onEvent(event: GameEvent) {
         when(event) {
             is GameEvent.ToggleClick -> {
