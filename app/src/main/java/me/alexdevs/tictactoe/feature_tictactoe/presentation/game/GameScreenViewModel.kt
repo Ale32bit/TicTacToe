@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,7 +23,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class GameScreenViewModel @Inject constructor(
-    private val historiesUseCases: HistoryUseCases
+    private val historiesUseCases: HistoryUseCases,
+    savedStateHandle: SavedStateHandle
 ): ViewModel() {
 
     private val _state = mutableStateOf(GameState())
@@ -30,6 +32,16 @@ class GameScreenViewModel @Inject constructor(
 
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
+
+    init {
+        savedStateHandle.get<Int>("mode")?.let { mode ->
+            if (mode != -1) {
+                viewModelScope.launch {
+                    Log.d("GameScreenViewModel", mode.toString())
+                }
+            }
+        }
+    }
 
     fun onEvent(event: GameEvent) {
         when(event) {
