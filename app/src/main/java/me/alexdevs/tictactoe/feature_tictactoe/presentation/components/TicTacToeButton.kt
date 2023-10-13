@@ -15,14 +15,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import me.alexdevs.tictactoe.feature_tictactoe.presentation.game.GameRound
+import me.alexdevs.tictactoe.ui.theme.DarkBlue
 
 @Composable
 fun TicTacToeButton(state: GameRound.Player, onCellClick: () -> Unit) {
     Box(
         modifier = Modifier
-            .size(100.dp)
+            .size(125.dp)
             .background(Color.White)
-            .border(5.dp, Color.Blue)
+            .border(5.dp, DarkBlue)
             .clip(MaterialTheme.shapes.medium)
             .clickable { onCellClick() },
         contentAlignment = Alignment.Center
@@ -33,7 +34,8 @@ fun TicTacToeButton(state: GameRound.Player, onCellClick: () -> Unit) {
                 GameRound.Player.Circle -> "O"
                 else -> ""
             },
-            fontSize = 60.sp
+            fontSize = 75.sp
         )
     }
+
 }
