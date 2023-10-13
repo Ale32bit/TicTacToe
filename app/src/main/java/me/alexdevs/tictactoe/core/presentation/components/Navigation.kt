@@ -4,12 +4,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import me.alexdevs.tictactoe.core.util.Screen
 import me.alexdevs.tictactoe.feature_tictactoe.presentation.home.HomeScreen
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
 import me.alexdevs.tictactoe.feature_tictactoe.presentation.game.GameScreen
 import me.alexdevs.tictactoe.feature_tictactoe.presentation.game.TwoGameScreen
 import me.alexdevs.tictactoe.feature_tictactoe.presentation.history.HistoryScreen
@@ -47,7 +45,6 @@ fun Navigation(
         composable(Screen.HistoryScreen.route) {
             HistoryScreen(
                 onNavigateUp = navController::navigateUp,
-                onNavigate = navController::navigate,
             )
         }
     }
