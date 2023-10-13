@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -37,10 +38,6 @@ fun GameScreen(
     mode: String? = null,
     viewModel: GameScreenViewModel = hiltViewModel()
 ) {
-    CreateBoxedBackButton(
-        onClick = { onNavigateUp.invoke() },
-    )
-
     val gameRound by remember { mutableStateOf(GameRound()) }
     val context = LocalContext.current
     val state = viewModel.state.value
@@ -68,10 +65,33 @@ fun GameScreen(
     }
 
     if (state.isInGame) {
+        CreateBoxedBackButton(
+            onClick = { onNavigateUp.invoke() },
+        )
 
-        CreateText(customText = "X", customColor = CrossColor, fontSize = 120.sp, alignment = Alignment.TopStart, padding = PaddingValues(start = 35.dp, top = 25.dp))
-        CreateText(customText = " vs ", customColor = Black, fontSize = 120.sp, alignment = Alignment.TopCenter, padding = PaddingValues(top = 25.dp))
-        CreateText(customText = "O", customColor = CircleColor, fontSize = 120.sp, alignment = Alignment.TopEnd, padding = PaddingValues(end = 25.dp, top = 25.dp))
+        val topPadding: Dp = 40.dp;
+
+        CreateText(
+            customText = "X",
+            customColor = CrossColor,
+            fontSize = 120.sp,
+            alignment = Alignment.TopStart,
+            padding = PaddingValues(start = 35.dp, top = topPadding)
+        )
+        CreateText(
+            customText = " vs ",
+            customColor = Black,
+            fontSize = 120.sp,
+            alignment = Alignment.TopCenter,
+            padding = PaddingValues(top = topPadding)
+        )
+        CreateText(
+            customText = "O",
+            customColor = CircleColor,
+            fontSize = 120.sp,
+            alignment = Alignment.TopEnd,
+            padding = PaddingValues(end = 25.dp, top = topPadding)
+        )
 
         var player = ""
         var colorPlayer: Color = Black
@@ -106,28 +126,41 @@ fun GameScreen(
             }
         }
 
-        //CreateText(customText = "X", customColor = CrossColor, fontSize = 100.sp, alignment = Alignment.BottomStart, padding = PaddingValues(start = 50.dp, bottom = 15.dp))
-        //CreateText(customText = "'s", customColor = CrossColor, fontSize = 75.sp, alignment = Alignment.BottomStart, padding = PaddingValues(start = 125.dp, bottom = 15.dp))
-        if(state.gameRound.playerTurn.toString().equals("Cross")){
+        if (state.gameRound.playerTurn.toString().equals("Cross")) {
             player = "X"
             colorPlayer = CrossColor
-        }else if(state.gameRound.playerTurn.toString().equals("Circle")){
+        } else if (state.gameRound.playerTurn.toString().equals("Circle")) {
             player = "O"
             colorPlayer = CircleColor
         }
 
-        CreateText(customText = player, customColor = colorPlayer, fontSize = 100.sp, alignment = Alignment.BottomStart, padding = PaddingValues(start = 50.dp, bottom = 50.dp))
-        CreateText(customText = "'s", customColor = colorPlayer, fontSize = 75.sp, alignment = Alignment.BottomStart, padding = PaddingValues(start = 125.dp, bottom = 50.dp))
-        CreateText(customText = " turn", customColor = Black, fontSize = 75.sp, alignment = Alignment.BottomCenter, padding = PaddingValues(start = 140.dp,bottom = 50.dp))
+        CreateText(
+            customText = player + "'",
+            customColor = colorPlayer,
+            fontSize = 100.sp,
+            alignment = Alignment.BottomStart,
+            padding = PaddingValues(start = 50.dp, bottom = 45.dp)
+        )
+        CreateText(
+            customText = "s",
+            customColor = colorPlayer,
+            fontSize = 75.sp,
+            alignment = Alignment.BottomStart,
+            padding = PaddingValues(start = 130.dp, bottom = 50.dp)
+        )
+        CreateText(
+            customText = " turn",
+            customColor = Black,
+            fontSize = 75.sp,
+            alignment = Alignment.BottomCenter,
+            padding = PaddingValues(start = 150.dp, bottom = 50.dp)
+        )
 
     } else {
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            val yOffset = 80.dp
-            val offsetBetweenItems = 8.dp
-
             CreateText(
                 customText = "POST\nMATCH",
                 customColor = Color.Black,
@@ -149,9 +182,11 @@ fun GameScreen(
                     GameRound.Player.Circle -> {
                         CircleColor
                     }
+
                     GameRound.Player.Cross -> {
                         CrossColor
                     }
+
                     else -> {
                         Color.Black
                     }
@@ -168,15 +203,20 @@ fun GameScreen(
                 customColor = Color.Black,
                 fontSize = 110.sp,
                 alignment = Alignment.BottomCenter,
-                padding = PaddingValues(10.dp,220.dp)
+                padding = PaddingValues(10.dp, 220.dp)
             )
 
-            CreateButton(
-                customText = stringResource(id = R.string.go_back),
-                fontSize = 32.sp,
-                onClick = { onNavigateUp.invoke() },
-                yPosition = (yOffset * 4) + (offsetBetweenItems * 3)
-            )
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.BottomCenter,
+            ) {
+                CreateButton(
+                    customText = stringResource(id = R.string.go_back),
+                    fontSize = 32.sp,
+                    onClick = { onNavigateUp.invoke() },
+                    yPosition = (-60).dp,
+                )
+            }
         }
     }
 }
