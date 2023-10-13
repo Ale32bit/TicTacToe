@@ -22,6 +22,7 @@ import me.alexdevs.tictactoe.core.util.UiEvent
 import me.alexdevs.tictactoe.feature_tictactoe.presentation.components.CreateButton
 import me.alexdevs.tictactoe.feature_tictactoe.presentation.components.CreateText
 import me.alexdevs.tictactoe.feature_tictactoe.presentation.components.TicTacToeButton
+import me.alexdevs.tictactoe.ui.theme.Black
 import me.alexdevs.tictactoe.ui.theme.CircleColor
 import me.alexdevs.tictactoe.ui.theme.CrossColor
 
@@ -58,28 +59,26 @@ fun GameScreen(
     }
 
     if (state.isInGame) {
+
+        CreateText(customText = "X", customColor = CrossColor, fontSize = 120.sp, alignment = Alignment.TopStart, padding = PaddingValues(start = 35.dp, top = 25.dp))
+        CreateText(customText = " vs ", customColor = Black, fontSize = 120.sp, alignment = Alignment.TopCenter, padding = PaddingValues(top = 25.dp))
+        CreateText(customText = "O", customColor = CircleColor, fontSize = 120.sp, alignment = Alignment.TopEnd, padding = PaddingValues(end = 25.dp, top = 25.dp))
+
+        var player = ""
+        var colorPlayer: Color = Black
+
         Column(
             modifier = Modifier
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
-            Row(
-                modifier = Modifier
-                    .padding(top = 20.dp)
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-
-            }
 
             LazyColumn(
                 modifier = Modifier.padding(top = 10.dp)
             ) {
                 items(3) { rowIndex ->
                     LazyRow(
-                        horizontalArrangement = Arrangement.spacedBy(5.dp),
                         verticalAlignment = Alignment.CenterVertically,
                         state = rememberLazyListState()
                     ) {
@@ -97,6 +96,21 @@ fun GameScreen(
                 }
             }
         }
+
+        //CreateText(customText = "X", customColor = CrossColor, fontSize = 100.sp, alignment = Alignment.BottomStart, padding = PaddingValues(start = 50.dp, bottom = 15.dp))
+        //CreateText(customText = "'s", customColor = CrossColor, fontSize = 75.sp, alignment = Alignment.BottomStart, padding = PaddingValues(start = 125.dp, bottom = 15.dp))
+        if(state.gameRound.playerTurn.toString().equals("Cross")){
+            player = "X"
+            colorPlayer = CrossColor
+        }else if(state.gameRound.playerTurn.toString().equals("Circle")){
+            player = "O"
+            colorPlayer = CircleColor
+        }
+
+        CreateText(customText = player, customColor = colorPlayer, fontSize = 100.sp, alignment = Alignment.BottomStart, padding = PaddingValues(start = 50.dp, bottom = 50.dp))
+        CreateText(customText = "'s", customColor = colorPlayer, fontSize = 75.sp, alignment = Alignment.BottomStart, padding = PaddingValues(start = 125.dp, bottom = 50.dp))
+        CreateText(customText = " turn", customColor = Black, fontSize = 75.sp, alignment = Alignment.BottomCenter, padding = PaddingValues(start = 140.dp,bottom = 50.dp))
+
     } else {
         Box(
             modifier = Modifier.fillMaxSize(),
