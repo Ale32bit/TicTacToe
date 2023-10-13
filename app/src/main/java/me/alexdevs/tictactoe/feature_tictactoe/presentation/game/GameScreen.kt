@@ -105,6 +105,19 @@ fun GameScreen(
                         }
                     }
                 }
+                //CreateText(customText = "X", customColor = CrossColor, fontSize = 100.sp, alignment = Alignment.BottomStart, padding = PaddingValues(start = 50.dp, bottom = 15.dp))
+                //CreateText(customText = "'s", customColor = CrossColor, fontSize = 75.sp, alignment = Alignment.BottomStart, padding = PaddingValues(start = 125.dp, bottom = 15.dp))
+                if(state.gameRound.playerTurn.toString().equals("Cross")){
+                    player = "X"
+                    colorPlayer = CrossColor
+                }else if(state.gameRound.playerTurn.toString().equals("Circle")){
+                    player = "O"
+                    colorPlayer = CircleColor
+                }
+
+                CreateText(customText = player, customColor = colorPlayer, fontSize = 100.sp, alignment = Alignment.BottomStart, padding = PaddingValues(start = 50.dp, bottom = 50.dp))
+                CreateText(customText = "'s", customColor = colorPlayer, fontSize = 75.sp, alignment = Alignment.BottomStart, padding = PaddingValues(start = 125.dp, bottom = 50.dp))
+                CreateText(customText = " turn", customColor = Black, fontSize = 75.sp, alignment = Alignment.BottomCenter, padding = PaddingValues(start = 140.dp,bottom = 50.dp))
             } else {
                 Column(
                     modifier = Modifier
@@ -138,21 +151,5 @@ fun GameScreen(
                     }
                 }
             }
-
-
-            //CreateText(customText = "X", customColor = CrossColor, fontSize = 100.sp, alignment = Alignment.BottomStart, padding = PaddingValues(start = 50.dp, bottom = 15.dp))
-            //CreateText(customText = "'s", customColor = CrossColor, fontSize = 75.sp, alignment = Alignment.BottomStart, padding = PaddingValues(start = 125.dp, bottom = 15.dp))
-            if(state.gameRound.playerTurn.toString().equals("Cross")){
-                player = "X"
-                colorPlayer = CrossColor
-            }else if(state.gameRound.playerTurn.toString().equals("Circle")){
-                player = "O"
-                colorPlayer = CircleColor
-            }
-
-            CreateText(customText = player, customColor = colorPlayer, fontSize = 100.sp, alignment = Alignment.BottomStart, padding = PaddingValues(start = 50.dp, bottom = 15.dp))
-            CreateText(customText = "'s", customColor = colorPlayer, fontSize = 75.sp, alignment = Alignment.BottomStart, padding = PaddingValues(start = 125.dp, bottom = 15.dp))
-            CreateText(customText = " turn", customColor = Black, fontSize = 75.sp, alignment = Alignment.BottomCenter, padding = PaddingValues(start = 140.dp,bottom = 15.dp))
-
         }
 
