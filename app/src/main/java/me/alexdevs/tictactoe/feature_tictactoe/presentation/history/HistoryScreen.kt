@@ -23,7 +23,6 @@ import me.alexdevs.tictactoe.ui.theme.White
 
 @Composable
 fun HistoryScreen(
-    onNavigate: (String) -> Unit = {},
     onNavigateUp: () -> Unit = {},
     viewModel: HistoryViewModel = hiltViewModel()
 ) {
@@ -48,9 +47,8 @@ fun HistoryScreen(
         val currentPadding = PaddingValues(30.dp, 300.dp, 30.dp, 30.dp)
 
         // Each cell of a column must have the same weight.
-        val column1Weight = .20f // 25%
-        val column2Weight = .10f // 25%
-        val column3Weight = .70f // 50%
+        val column1Weight = .30f // 25%
+        val column2Weight = .70f // 50%
         // The LazyColumn will be our table. Notice the use of the weights below
         LazyColumn(
             Modifier
@@ -64,9 +62,8 @@ fun HistoryScreen(
                         .fillMaxWidth()
                         .background(White)
                 ) {
-                    TableCell(text = it.id.toString(), weight = column1Weight, )
-                    TableCell(text = it.winner, weight = column2Weight)
-                    TableCell(text = it.date, weight = column3Weight)
+                    TableCell(text = it.winner, weight = column1Weight)
+                    TableCell(text = it.date, weight = column2Weight)
                 }
             }
         }

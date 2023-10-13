@@ -1,24 +1,18 @@
 package me.alexdevs.tictactoe.feature_tictactoe.presentation.game
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.launch
 import me.alexdevs.tictactoe.core.util.UiEvent
 import me.alexdevs.tictactoe.feature_tictactoe.domain.model.History
 import me.alexdevs.tictactoe.feature_tictactoe.domain.use_case.HistoryUseCases
-import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.Calendar
 import javax.inject.Inject
 
 @HiltViewModel
@@ -56,7 +50,7 @@ class TwoGameScreenViewModel @Inject constructor(
                 historiesUseCases.insertGame(
                     History(
                         date = formatter.format(LocalDateTime.now()),
-                        winner = if(_state.value.gameRound.winner == GameRound.Player.Cross) "X" else "O"
+                        winner = getGameResult(),
                     )
                 )
 
@@ -64,5 +58,21 @@ class TwoGameScreenViewModel @Inject constructor(
             }
         }
         return true
+    }
+
+    private fun getGameResult(): String {
+        return when (_state.value.gameRound.winner) {
+            GameRound.Player.Cross -> {
+                "X"
+            }
+
+            GameRound.Player.Circle -> {
+                "O"
+            }
+
+            GameRound.Player.None -> {
+                "Tie"
+            }
+        }
     }
 }
