@@ -126,16 +126,16 @@ fun GameScreen(
             }
         }
 
-        if (state.gameRound.playerTurn.toString().equals("Cross")) {
+        if (state.gameRound.playerTurn.toString() == "Cross") {
             player = "X"
             colorPlayer = CrossColor
-        } else if (state.gameRound.playerTurn.toString().equals("Circle")) {
+        } else if (state.gameRound.playerTurn.toString() == "Circle") {
             player = "O"
             colorPlayer = CircleColor
         }
 
         CreateText(
-            customText = player + "'",
+            customText = "$player'",
             customColor = colorPlayer,
             fontSize = 100.sp,
             alignment = Alignment.BottomStart,

@@ -33,7 +33,7 @@ fun Navigation(
             route = Screen.GameScreen.route,
             arguments = listOf(
                 navArgument(name = "mode") {
-                    type = NavType.StringType
+                    type = NavType.IntType
                     nullable = false
                     defaultValue = -1
                 }
