@@ -15,6 +15,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import me.alexdevs.tictactoe.feature_tictactoe.presentation.game.GameRound
+import me.alexdevs.tictactoe.ui.theme.CircleColor
+import me.alexdevs.tictactoe.ui.theme.CrossColor
 import me.alexdevs.tictactoe.ui.theme.DarkBlue
 
 @Composable
@@ -28,13 +30,21 @@ fun TicTacToeButton(state: GameRound.Player, onCellClick: () -> Unit) {
             .clickable { onCellClick() },
         contentAlignment = Alignment.Center
     ) {
+        var currentPlayer = "";
+        var color = Color.White;
+
+        if (state == GameRound.Player.Cross) {
+            currentPlayer = "X"
+            color = CrossColor
+        } else if (state == GameRound.Player.Circle) {
+            currentPlayer = "O"
+            color = CircleColor
+        }
+
         Text(
-            text = when (state) {
-                GameRound.Player.Cross -> "X"
-                GameRound.Player.Circle -> "O"
-                else -> ""
-            },
-            fontSize = 75.sp
+            text = currentPlayer,
+            fontSize = 75.sp,
+            color = color,
         )
     }
 
