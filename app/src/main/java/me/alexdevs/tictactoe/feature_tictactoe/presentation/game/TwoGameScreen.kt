@@ -92,9 +92,6 @@ fun TwoGameScreen(
             padding = PaddingValues(end = 25.dp, top = topPadding)
         )
 
-        var player = ""
-        var colorPlayer: Color = Black
-
         Column(
             modifier = Modifier
                 .fillMaxSize(),
@@ -124,36 +121,6 @@ fun TwoGameScreen(
                 }
             }
         }
-
-        if (state.gameRound.playerTurn.toString().equals("Cross")) {
-            player = "X"
-            colorPlayer = CrossColor
-        } else if (state.gameRound.playerTurn.toString().equals("Circle")) {
-            player = "O"
-            colorPlayer = CircleColor
-        }
-
-        CreateText(
-            customText = player + "'",
-            customColor = colorPlayer,
-            fontSize = 100.sp,
-            alignment = Alignment.BottomStart,
-            padding = PaddingValues(start = 50.dp, bottom = 45.dp)
-        )
-        CreateText(
-            customText = "s",
-            customColor = colorPlayer,
-            fontSize = 75.sp,
-            alignment = Alignment.BottomStart,
-            padding = PaddingValues(start = 130.dp, bottom = 50.dp)
-        )
-        CreateText(
-            customText = " turn",
-            customColor = Black,
-            fontSize = 75.sp,
-            alignment = Alignment.BottomCenter,
-            padding = PaddingValues(start = 150.dp, bottom = 50.dp)
-        )
 
     } else {
         Box(
