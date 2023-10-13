@@ -11,6 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import me.alexdevs.tictactoe.feature_tictactoe.presentation.game.GameScreen
+import me.alexdevs.tictactoe.feature_tictactoe.presentation.game.TwoGameScreen
 import me.alexdevs.tictactoe.feature_tictactoe.presentation.history.HistoryScreen
 
 @Composable
@@ -29,20 +30,17 @@ fun Navigation(
             )
         }
 
-        composable(
-            route = Screen.GameScreen.route,
-            arguments = listOf(
-                navArgument(name = "mode") {
-                    type = NavType.StringType
-                    nullable = false
-                    defaultValue = "1"
-                }
-            )
-        ) {
+        composable(Screen.GameScreen.route) {
             GameScreen(
                 onNavigateUp = navController::navigateUp,
                 onNavigate = navController::navigate,
-                mode = it.arguments?.getString("mode")
+            )
+        }
+
+        composable(Screen.TwoGameScreen.route) {
+            TwoGameScreen(
+                onNavigateUp = navController::navigateUp,
+                onNavigate = navController::navigate,
             )
         }
 

@@ -21,7 +21,7 @@ import java.util.Calendar
 import javax.inject.Inject
 
 @HiltViewModel
-class GameScreenViewModel @Inject constructor(
+class TwoGameScreenViewModel @Inject constructor(
     private val historiesUseCases: HistoryUseCases
 ): ViewModel() {
 
@@ -35,12 +35,7 @@ class GameScreenViewModel @Inject constructor(
     fun onEvent(event: GameEvent) {
         when(event) {
             is GameEvent.ToggleClick -> {
-                val cont = playTurn(event.index)
-
-                if(cont && _state.value.gameRound.playerTurn == GameRound.Player.Circle) {
-                    val bestMove = _state.value.gameRound.bestMove()
-                    playTurn(bestMove)
-                }
+                playTurn(event.index)
             }
         }
     }

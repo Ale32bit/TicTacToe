@@ -63,7 +63,7 @@ fun HomeScreen(
             customText = stringResource(id = R.string.one_player),
             fontSize = 32.sp,
             onClick = {
-                onNavigate(Screen.GameScreen.route + "?mode=1")
+                onNavigate(Screen.GameScreen.route)
             },
             yPosition = yOffset,
         )
@@ -72,7 +72,7 @@ fun HomeScreen(
             customText = stringResource(id = R.string.two_players),
             fontSize = 32.sp,
             onClick = {
-                onNavigate(Screen.GameScreen.route + "?mode=2")
+                onNavigate(Screen.TwoGameScreen.route)
             },
             yPosition = (yOffset * 2) + offsetBetweenButtons,
         )
