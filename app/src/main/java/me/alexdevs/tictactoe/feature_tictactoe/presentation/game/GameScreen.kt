@@ -7,6 +7,9 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,6 +24,7 @@ import me.alexdevs.tictactoe.core.presentation.util.asString
 import me.alexdevs.tictactoe.core.util.UiEvent
 import me.alexdevs.tictactoe.feature_tictactoe.presentation.components.CreateButton
 import me.alexdevs.tictactoe.feature_tictactoe.presentation.components.CreateText
+import me.alexdevs.tictactoe.feature_tictactoe.presentation.components.CreateBoxedBackButton
 import me.alexdevs.tictactoe.feature_tictactoe.presentation.components.TicTacToeButton
 import me.alexdevs.tictactoe.ui.theme.Black
 import me.alexdevs.tictactoe.ui.theme.CircleColor
@@ -33,6 +37,11 @@ fun GameScreen(
     mode: String? = null,
     viewModel: GameScreenViewModel = hiltViewModel()
 ) {
+    CreateBoxedBackButton(
+        onClick = { onNavigateUp.invoke() },
+    )
+
+    val gameRound by remember { mutableStateOf(GameRound()) }
     val context = LocalContext.current
     val state = viewModel.state.value
     val winnerName = state.gameRound.winner
@@ -46,7 +55,7 @@ fun GameScreen(
                 is UiEvent.ShowSnackbar -> {
                     Toast.makeText(
                         context,
-                        event.uiText!!.asString(context),
+                        event.uiText.asString(context),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
