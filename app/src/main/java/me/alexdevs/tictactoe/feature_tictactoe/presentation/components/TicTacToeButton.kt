@@ -30,22 +30,33 @@ fun TicTacToeButton(state: GameRound.Player, onCellClick: () -> Unit) {
             .clickable { onCellClick() },
         contentAlignment = Alignment.Center
     ) {
-        var currentPlayer = "";
-        var color = Color.White;
-
-        if (state == GameRound.Player.Cross) {
-            currentPlayer = "X"
-            color = CrossColor
-        } else if (state == GameRound.Player.Circle) {
-            currentPlayer = "O"
-            color = CircleColor
-        }
+        val playerState = getPlayerState(state)
 
         Text(
-            text = currentPlayer,
+            color = playerState.first,
+            text = playerState.second,
             fontSize = 75.sp,
-            color = color,
         )
     }
+}
 
+/**
+ * Gets the player state information based on the provided [state].
+ *
+ * @param state The current player state (Cross or Circle).
+ * @return A [Pair] containing the player's color and name.
+ */
+private fun getPlayerState(state: GameRound.Player): Pair<Color, String> {
+    var currentPlayer = ""
+    var color = Color.White
+
+    if (state == GameRound.Player.Cross) {
+        currentPlayer = "X"
+        color = CrossColor
+    } else if (state == GameRound.Player.Circle) {
+        currentPlayer = "O"
+        color = CircleColor
+    }
+
+    return Pair(color, currentPlayer)
 }
