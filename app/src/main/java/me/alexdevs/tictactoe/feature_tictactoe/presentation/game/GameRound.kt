@@ -3,47 +3,45 @@ package me.alexdevs.tictactoe.feature_tictactoe.presentation.game
 import androidx.compose.runtime.mutableStateListOf
 
 class GameRound {
-    public enum class Player {
+    enum class Player {
         None,
         Circle,
         Cross,
     }
 
-    public var grid = mutableStateListOf(
+    var grid = mutableStateListOf(
         Player.None, Player.None, Player.None,
         Player.None, Player.None, Player.None,
         Player.None, Player.None, Player.None,
     )
 
-    public var playerTurn: Player = Player.Cross
-        get() = field
-        private set;
-
-    public var winner: Player = Player.None
-        get() = field
+    var playerTurn: Player = Player.Cross
         private set
 
-    public fun playTurn(x: Int, y: Int): Boolean {
-        return playTurn(y * 3 + x)
-    }
+    var winner: Player = Player.None
+        private set
 
-    public fun playTurn(cell: Int): Boolean {
+    fun playTurn(x: Int, y: Int): Boolean =
+        playTurn(y * 3 + x)
+
+
+    fun playTurn(cell: Int): Boolean {
         if(grid[cell] != Player.None) {
             throw Exception("Attempt to override already played cell.")
         }
 
-        grid[cell] = playerTurn;
+        grid[cell] = playerTurn
 
-        val hasPlayerWon = hasWon(playerTurn);
+        val hasPlayerWon = hasWon(playerTurn)
         if(hasPlayerWon)
-            winner = playerTurn;
+            winner = playerTurn
 
         playerTurn = if(playerTurn == Player.Cross) Player.Circle else Player.Cross
 
-        return hasPlayerWon;
+        return hasPlayerWon
     }
 
-    public fun isDraw(): Boolean {
+    fun isDraw(): Boolean {
         if(hasWon(Player.Cross) || hasWon(Player.Circle))
             return false
 
@@ -52,14 +50,12 @@ class GameRound {
                 return false
         }
 
-        return true;
+        return true
     }
 
-    private fun getCell(x: Int, y: Int): Int {
-        return y * 3 + x
-    }
+    private fun getCell(x: Int, y: Int): Int = y * 3 + x
 
-    public fun hasWon(player: Player): Boolean {
+    fun hasWon(player: Player): Boolean {
 
         // Check if row cells have matching player
         for(y in 0 until 3) {
@@ -77,12 +73,12 @@ class GameRound {
                 return true
         }
 
-        // Controllo della diagonale principale
+        // Check of first diagonal
         if (grid[0] == player && grid[4] == player && grid[8] == player) {
             return true
         }
 
-        // Controllo della diagonale secondaria
+        // Check of second diagonal
         if (grid[2] == player && grid[4] == player && grid[6] == player) {
             return true
         }
@@ -90,12 +86,12 @@ class GameRound {
         return false
     }
 
-    public fun canPlayCell(cell: Int): Boolean =
+    fun canPlayCell(cell: Int): Boolean =
         grid[cell] == Player.None
-    public fun canPlayCell(x: Int, y: Int): Boolean =
+    fun canPlayCell(x: Int, y: Int): Boolean =
         grid[x + y * 3] == Player.None
 
-    public fun minimax(depth: Int, isMaximizing: Boolean): Int {
+    private fun minimax(depth: Int, isMaximizing: Boolean): Int {
         if (hasWon(Player.Cross)) {
             return -1
         }
@@ -131,7 +127,7 @@ class GameRound {
         }
     }
 
-    public fun bestMove(): Int {
+    fun bestMove(): Int {
         var bestScore = Int.MIN_VALUE
         var move = -1
         for (i in grid.indices) {
