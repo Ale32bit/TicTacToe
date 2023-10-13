@@ -15,6 +15,6 @@ This project was a collaborative effort, credits to the amazing team:
 - [Ale32bit](https://github.com/Ale32bit)
 - [Tsadriu](https://github.com/Tsadriu)
 - [ec25p5e](https://github.com/ec25p5e)
+- [giada-pintos](https://github.com/giada-pintos)
 - [pintigho](https://github.com/pintigho)
 - Abdullah Sheikh
-- [giada-pintos](https://github.com/giada-pintos)
