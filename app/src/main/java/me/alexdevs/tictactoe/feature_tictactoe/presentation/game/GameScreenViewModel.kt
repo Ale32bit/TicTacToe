@@ -20,6 +20,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import javax.inject.Inject
+import kotlin.random.Random
 
 @HiltViewModel
 class GameScreenViewModel @Inject constructor(
@@ -39,8 +40,17 @@ class GameScreenViewModel @Inject constructor(
                 val cont = playTurn(event.index)
 
                 if(cont && _state.value.gameRound.playerTurn == GameRound.Player.Circle) {
-                    val bestMove = _state.value.gameRound.bestMove()
-                    playTurn(bestMove)
+                    var nextMove: Int
+                    val chance = Random.nextDouble()
+                    Log.d("GameScreenViewModel", "Difficulty: ${_state.value.difficulty}, Minimax Chance: $chance; Minimax: ${chance < _state.value.difficulty}")
+                    if (chance < _state.value.difficulty) {
+                        nextMove = _state.value.gameRound.bestMove()
+                    } else {
+                        do {
+                            nextMove = Random.nextInt(0, 9)
+                        } while (!_state.value.gameRound.canPlayCell(nextMove))
+                    }
+                    playTurn(nextMove)
                 }
             }
         }
