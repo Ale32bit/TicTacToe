@@ -26,10 +26,10 @@ import kotlinx.coroutines.flow.collectLatest
 import me.alexdevs.tictactoe.R
 import me.alexdevs.tictactoe.core.presentation.util.asString
 import me.alexdevs.tictactoe.core.util.UiEvent
+import me.alexdevs.tictactoe.feature_tictactoe.presentation.components.CreateText
 import me.alexdevs.tictactoe.feature_tictactoe.presentation.components.TicTacToeButton
 import me.alexdevs.tictactoe.ui.theme.Black
 import me.alexdevs.tictactoe.ui.theme.CircleColor
-import me.alexdevs.tictactoe.ui.theme.CreateText
 import me.alexdevs.tictactoe.ui.theme.CrossColor
 
 @Composable
