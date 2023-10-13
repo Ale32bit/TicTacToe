@@ -21,27 +21,6 @@ import me.alexdevs.tictactoe.ui.theme.DarkBlue
 fun TicTacToeButton(state: GameRound.Player, onCellClick: () -> Unit) {
     Box(
         modifier = Modifier
-            .size(100.dp)
-            .background(Color.White)
-            .border(5.dp, Color.Blue)
-            .clip(MaterialTheme.shapes.medium)
-            .clickable { onCellClick() },
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = when (state) {
-                GameRound.Player.Cross -> "X"
-                GameRound.Player.Circle -> "O"
-                else -> ""
-            },
-            fontSize = 60.sp
-        )
-    }
-}
-@Composable
-fun TicTacToeButtonV2(state: GameRound.Player, onCellClick: () -> Unit) {
-    Box(
-        modifier = Modifier
             .size(125.dp)
             .background(Color.White)
             .border(5.dp, DarkBlue)
