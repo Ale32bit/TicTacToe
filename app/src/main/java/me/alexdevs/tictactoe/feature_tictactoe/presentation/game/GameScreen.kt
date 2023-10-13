@@ -43,6 +43,8 @@ fun GameScreen(
     val state = viewModel.state.value
     val winnerName = state.gameRound.winner
 
+    Log.d("GameScreen", mode.toString())
+
     /**
      * NON TOCCARE !!!!!!!!
      */

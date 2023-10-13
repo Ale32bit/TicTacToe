@@ -35,7 +35,7 @@ fun Navigation(
                 navArgument(name = "mode") {
                     type = NavType.StringType
                     nullable = false
-                    defaultValue = -1
+                    defaultValue = "1"
                 }
             )
         ) {
