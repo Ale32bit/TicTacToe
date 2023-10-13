@@ -1,15 +1,14 @@
 package me.alexdevs.tictactoe.feature_tictactoe.presentation.game
 
+import android.os.Build
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,14 +22,15 @@ import kotlinx.coroutines.flow.collectLatest
 import me.alexdevs.tictactoe.R
 import me.alexdevs.tictactoe.core.presentation.util.asString
 import me.alexdevs.tictactoe.core.util.UiEvent
+import me.alexdevs.tictactoe.feature_tictactoe.presentation.components.CreateBoxedBackButton
 import me.alexdevs.tictactoe.feature_tictactoe.presentation.components.CreateButton
 import me.alexdevs.tictactoe.feature_tictactoe.presentation.components.CreateText
-import me.alexdevs.tictactoe.feature_tictactoe.presentation.components.CreateBoxedBackButton
 import me.alexdevs.tictactoe.feature_tictactoe.presentation.components.TicTacToeButton
 import me.alexdevs.tictactoe.ui.theme.Black
 import me.alexdevs.tictactoe.ui.theme.CircleColor
 import me.alexdevs.tictactoe.ui.theme.CrossColor
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun TwoGameScreen(
     onNavigate: (String) -> Unit = {},
@@ -42,9 +42,6 @@ fun TwoGameScreen(
     val state = viewModel.state.value
     val winnerName = state.gameRound.winner
 
-    /**
-     * NON TOCCARE !!!!!!!!
-     */
     LaunchedEffect(key1 = true) {
         viewModel.eventFlow.collectLatest { event ->
             when (event) {
@@ -68,7 +65,7 @@ fun TwoGameScreen(
             onClick = { onNavigateUp.invoke() },
         )
 
-        val topPadding: Dp = 40.dp;
+        val topPadding: Dp = 40.dp
 
         CreateText(
             customText = "X",
