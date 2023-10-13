@@ -136,10 +136,16 @@ fun GameScreen(
                 } else {
                     stringResource(id = R.string.draw_txt)
                 },
-                customColor = if (winnerName == GameRound.Player.Circle) {
-                    CircleColor
-                } else {
-                    CrossColor
+                customColor = when (winnerName) {
+                    GameRound.Player.Circle -> {
+                        CircleColor
+                    }
+                    GameRound.Player.Cross -> {
+                        CrossColor
+                    }
+                    else -> {
+                        Color.Black
+                    }
                 },
                 fontSize = 110.sp,
             )
