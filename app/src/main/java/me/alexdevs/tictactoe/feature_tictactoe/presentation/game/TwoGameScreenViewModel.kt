@@ -17,6 +17,7 @@ import me.alexdevs.tictactoe.feature_tictactoe.domain.use_case.HistoryUseCases
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import javax.inject.Inject
 
@@ -50,14 +51,12 @@ class TwoGameScreenViewModel @Inject constructor(
                     isInGame = !_state.value.isInGame
                 )
 
-                val time = Calendar.getInstance().time
-                val formatterTime = SimpleDateFormat("HH:mm")
-                val currentTime = formatterTime.format(time)
+                val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")
 
                 historiesUseCases.insertGame(
                     History(
-                        date = LocalDateTime.now().toString(),
-                        winner = _state.value.gameRound.winner.toString()
+                        date = formatter.format(LocalDateTime.now()),
+                        winner = if(_state.value.gameRound.winner == GameRound.Player.Cross) "X" else "O"
                     )
                 )
 
